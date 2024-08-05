@@ -8,7 +8,25 @@ set scrolloff=10
 set ignorecase smartcase
 set showmode
 set number relativenumber
+
+
 set clipboard+=unnamed
+nnoremap yy "+yy
+vnoremap y "+y
+nnoremap p "+p
+vnoremap p "+p
+nnoremap P "+P
+vnoremap P "+P
+nnoremap <leader>yy yy
+vnoremap <leader>y y
+nnoremap <leader>p p
+vnoremap <leader>p p
+nnoremap <leader>P P
+vnoremap <leader>P P
+nnoremap <leader>dd "+dd
+vnoremap <leader>d "+d
+
+
 
 vmap H ^
 vmap L $
@@ -23,10 +41,9 @@ nmap ]] <Action>(MethodDown)
 nmap [e <Action>(GotoPreviousError)
 nmap ]e <Action>(GotoNextError)
 
-nmap <Leader>w <Action>(FileMenu)
+nmap <Leader>W <Action>(FileMenu)
 
 nmap <Leader>f <Action>(SelectInProjectView)
-
 nmap <Leader>s <Action>(FileStructurePopup)
 nmap <Leader>e <Action>(ShowErrorDescription)
 
@@ -34,3 +51,7 @@ nmap <Leader>D <Action>(QuickImplementations)
 nmap <Leader>d <Action>(QuickJavaDoc)
 
 nmap <Leader><Leader>H <Action>(VimWindowLeft)
+
+nmap <Space>j :action AceAction<CR>
+nmap <Space>l :action AceLineAction<CR>
+nmap <Space>t :action AceTargetAction<CR>
