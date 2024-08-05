@@ -1,0 +1,36 @@
+let mapleader = "\<space>"
+
+set commentary
+set surround
+set easymotion
+
+set scrolloff=10
+set ignorecase smartcase
+set showmode
+set number relativenumber
+set clipboard+=unnamed
+
+vmap H ^
+vmap L $
+nmap H ^
+nmap L $
+
+nmap J 3j
+nmap K 3k
+
+nmap [[ <Action>(MethodUp)
+nmap ]] <Action>(MethodDown)
+nmap [e <Action>(GotoPreviousError)
+nmap ]e <Action>(GotoNextError)
+
+nmap <Leader>w <Action>(FileMenu)
+
+nmap <Leader>f <Action>(SelectInProjectView)
+
+nmap <Leader>s <Action>(FileStructurePopup)
+nmap <Leader>e <Action>(ShowErrorDescription)
+
+nmap <Leader>D <Action>(QuickImplementations)
+nmap <Leader>d <Action>(QuickJavaDoc)
+
+nmap <Leader><Leader>H <Action>(VimWindowLeft)
