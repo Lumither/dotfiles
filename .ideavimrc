@@ -27,6 +27,8 @@ nnoremap <leader>dd "+dd
 vnoremap <leader>d "+d
 
 
+vmap U <C-R>
+nmap U <C-R>
 
 vmap H ^
 vmap L $
