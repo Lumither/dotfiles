@@ -1,0 +1,7 @@
+[window]
+opacity = 0.8
+blur = true
+
+[font]
+normal = { family = "NotoSansM Nerd Font", style = "Regular" }
+size = 13

@@ -36,7 +36,9 @@ nmap H ^
 nmap L $
 
 nmap J 3j
+vmap J 3j
 nmap K 3k
+vmap K 3k
 
 nmap [[ <Action>(MethodUp)
 nmap ]] <Action>(MethodDown)
