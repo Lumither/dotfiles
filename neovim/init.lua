@@ -7,4 +7,3 @@ require('config.keymap')
 require('plugins')
 require('config.colorscheme')
 require('config.lsp')
-
