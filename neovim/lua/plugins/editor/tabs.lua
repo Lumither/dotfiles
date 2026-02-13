@@ -1,19 +1,45 @@
 return {
     'akinsho/bufferline.nvim',
     version = "*",
-    dependencies = 'nvim-tree/nvim-web-devicons',
-    -- config = function()
-    --     require("bufferline").setup({
-    --         options = {
-    --             offsets = {
-    --                 {
-    --                     filetype = "NvimTree",
-    --                     text = "File Explorer",
-    --                     text_align = "left",
-    --                     separator = true,
-    --                 },
-    --             },
-    --         },
-    --     })
-    -- end
+    dependencies = {},
+    event = "VeryLazy",
+    opts = {
+        options = {
+            buffer_close_icon = "x",
+            modified_icon = "*",
+            close_icon = "x",
+            left_trunc_marker = "<",
+            right_trunc_marker = ">",
+            indicator = {
+                icon = "|",
+                style = "icon",
+            },
+            offsets = {
+                {
+                    filetype = "neo-tree",
+                    text = "File Explorer",
+                    text_align = "left",
+                    separator = true,
+                },
+            },
+            close_command = function(bufnr)
+                local bufs = vim.fn.getbufinfo({ buflisted = 1 })
+                if #bufs > 1 then
+                    vim.cmd("BufferLineCyclePrev")
+                end
+                vim.cmd("bdelete " .. bufnr)
+            end,
+        },
+    },
+    keys = {
+        { "[b", "<cmd>BufferLineCyclePrev<cr>", desc = "Previous buffer" },
+        { "]b", "<cmd>BufferLineCycleNext<cr>", desc = "Next buffer" },
+        { "<leader>x", function()
+            local bufs = vim.fn.getbufinfo({ buflisted = 1 })
+            if #bufs > 1 then
+                vim.cmd("BufferLineCyclePrev")
+            end
+            vim.cmd("bdelete #")
+        end, desc = "Close buffer" },
+    },
 }
