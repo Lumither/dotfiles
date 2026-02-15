@@ -1,0 +1,36 @@
+return {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    opts = {
+        delay = 300,
+        icons = {
+            mappings = false,
+            breadcrumb = ">",
+            separator = "->",
+            group = "+",
+            ellipsis = "..",
+            colors = false,
+            keys = {
+                Up = "Up ",
+                Down = "Down ",
+                Left = "Left ",
+                Right = "Right ",
+                C = "Ctrl+",
+                M = "Alt+",
+                D = "Super+",
+                S = "Shift+",
+                CR = "Enter ",
+                Esc = "Esc ",
+                ScrollWheelDown = "ScrollDown ",
+                ScrollWheelUp = "ScrollUp ",
+                NL = "Enter ",
+                BS = "BS ",
+                Space = "Space ",
+                Tab = "Tab ",
+            },
+        },
+        win = {
+            no_overlap = false,
+        },
+    },
+}

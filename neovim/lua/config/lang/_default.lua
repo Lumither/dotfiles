@@ -2,6 +2,7 @@ return {
     servers = {
         agda = { "agda_ls" },
         arduino = { "arduino_language_server" },
+        asm = { "asm_lsp" },
         awk = { "awk_ls" },
         cmake = { "cmake" },
         clojure = { "clojure_lsp" },
@@ -32,7 +33,6 @@ return {
         matlab = { "matlab_ls" },
         nim = { "nim_langserver" },
         nix = { "nil_ls" },
-        ocaml = { "ocamllsp" },
         perl = { "perlnavigator" },
         php = { "phpactor" },
         proto = { "pbls" },

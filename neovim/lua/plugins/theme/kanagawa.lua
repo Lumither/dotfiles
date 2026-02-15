@@ -18,7 +18,7 @@ return {
             return {
                 -- Transparent backgrounds
                 LineNr = { bg = "none" },
-                CursorLineNr = { bg = "none" },
+                CursorLineNr = { fg = palette.fujiWhite, bg = "none", bold = true },
                 SignColumn = { bg = "none" },
                 FoldColumn = { bg = "none" },
                 NormalDark = { bg = "none" },
@@ -53,8 +53,10 @@ return {
                 NeoTreeGitModified = { fg = palette.carpYellow },
                 NeoTreeGitDeleted = { fg = palette.peachRed },
                 NeoTreeGitRenamed = { fg = palette.springBlue },
-                NeoTreeGitUntracked = { fg = palette.sumiInk4 },
-                NeoTreeGitIgnored = { fg = palette.sumiInk4 },
+                NeoTreeGitUntracked = { fg = fg },
+                NeoTreeGitIgnored = { fg = palette.fujiGray },
+                NeoTreeDotfile = { fg = fg },
+                NeoTreeHiddenByName = { fg = fg },
                 NeoTreeGitUnstaged = { fg = palette.carpYellow },
                 NeoTreeGitStaged = { fg = palette.springGreen },
                 NeoTreeGitConflict = { fg = palette.peachRed, bold = true },
@@ -83,6 +85,26 @@ return {
                 BlinkCmpKind = { fg = accent2 },
                 BlinkCmpDoc = { fg = fg, bg = bg },
                 BlinkCmpDocBorder = { fg = border, bg = bg },
+
+                -- Window separators
+                WinSeparator = { fg = palette.sumiInk4, bg = "none" },
+
+                -- Trouble
+                TroubleNormal = { bg = "none" },
+                TroubleNormalNC = { bg = "none" },
+
+                -- Which-key
+                WhichKeyNormal = { fg = fg, bg = "none" },
+                WhichKeyBorder = { fg = border, bg = "none" },
+                WhichKeyTitle = { fg = accent2, bg = "none", bold = true },
+
+                -- Gitsigns (number line highlights)
+                GitSignsAddNr = { fg = "none", bg = palette.autumnGreen },
+                GitSignsChangeNr = { fg = "none", bg = palette.autumnYellow },
+                GitSignsDeleteNr = { fg = "none", bg = palette.autumnRed },
+                GitSignsTopdeleteNr = { fg = "none", bg = palette.autumnRed },
+                GitSignsChangedeleteNr = { fg = "none", bg = palette.autumnYellow },
+                GitSignsUntrackedNr = { fg = "none", bg = palette.sumiInk4 },
             }
         end,
     },

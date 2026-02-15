@@ -6,6 +6,8 @@ local modules = {
     "config.lang.rust",
     "config.lang.shell",
     "config.lang.c",
+    "config.lang.ocaml",
+    "config.lang.swift",
     "config.lang._default",
 }
 

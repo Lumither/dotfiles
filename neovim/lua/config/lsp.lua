@@ -48,6 +48,42 @@ end
 -- On-demand installation via FileType autocmd
 local installed_cache = {}
 
+local function install_servers(ft, servers)
+    local registry = require("mason-registry")
+    local mason_lspconfig = require("mason-lspconfig")
+
+    for _, server in ipairs(servers) do
+        -- Already available on PATH, just enable it
+        if vim.fn.executable(server) == 1 then
+            enable_server(server)
+            goto continue
+        end
+
+        local ok, mapping = pcall(function()
+            return mason_lspconfig.get_mappings().lspconfig_to_package[server]
+        end)
+        local pkg_name = (ok and mapping) or server
+
+        local pkg_ok, pkg = pcall(registry.get_package, pkg_name)
+        if pkg_ok and not pkg:is_installed() then
+            vim.notify("Mason: installing " .. pkg_name .. " for " .. ft, vim.log.levels.INFO)
+            pkg:install():once("closed", vim.schedule_wrap(function()
+                if pkg:is_installed() then
+                    vim.notify("Mason: " .. pkg_name .. " installed", vim.log.levels.INFO)
+                    enable_server(server)
+                else
+                    vim.notify("Mason: " .. pkg_name .. " failed to install", vim.log.levels.ERROR)
+                end
+            end))
+        elseif not pkg_ok then
+            -- Not in Mason, try enabling anyway (lspconfig may know the real binary)
+            enable_server(server)
+        end
+
+        ::continue::
+    end
+end
+
 vim.api.nvim_create_autocmd("FileType", {
     group = vim.api.nvim_create_augroup("MasonAutoInstall", { clear = true }),
     callback = function(ev)
@@ -63,26 +99,10 @@ vim.api.nvim_create_autocmd("FileType", {
         installed_cache[ft] = true
 
         local registry = require("mason-registry")
-        local mason_lspconfig = require("mason-lspconfig")
-
-        for _, server in ipairs(servers) do
-            local ok, mapping = pcall(function()
-                return mason_lspconfig.get_mappings().lspconfig_to_mason[server]
+        registry.refresh(function()
+            vim.schedule(function()
+                install_servers(ft, servers)
             end)
-            local pkg_name = (ok and mapping) or server
-
-            local pkg_ok, pkg = pcall(registry.get_package, pkg_name)
-            if pkg_ok and not pkg:is_installed() then
-                vim.notify("Mason: installing " .. pkg_name .. " for " .. ft, vim.log.levels.INFO)
-                pkg:install():once("closed", function()
-                    if pkg:is_installed() then
-                        vim.notify("Mason: " .. pkg_name .. " installed", vim.log.levels.INFO)
-                        vim.schedule(function()
-                            enable_server(server)
-                        end)
-                    end
-                end)
-            end
-        end
+        end)
     end,
 })

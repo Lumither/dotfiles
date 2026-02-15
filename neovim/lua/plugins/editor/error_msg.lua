@@ -3,22 +3,43 @@ return {
     opts = {
         warn_no_results = false,
         open_no_results = true,
+        icons = {
+            folder_closed = "+ ",
+            folder_open = "- ",
+        },
+        win = {
+            wo = {
+                winhighlight = "Normal:Normal,NormalNC:Normal,EndOfBuffer:Normal",
+            },
+        },
+        modes = {
+            symbols = {
+                focus = true,
+                win = {
+                    position = "right",
+                    size = 40,
+                    wo = {
+                        winhighlight = "Normal:Normal,NormalNC:Normal,EndOfBuffer:Normal",
+                    },
+                },
+            },
+        },
     },
     cmd = "Trouble",
     keys = {
+        {
+            "<leader>e",
+            function()
+                vim.diagnostic.open_float({ scope = "cursor" })
+            end,
+            desc = "Show diagnostic at cursor",
+        },
         {
             "<leader>E",
             function()
                 require("trouble").toggle("diagnostics", { focus = true })
             end,
-            desc = "Diagnostics (Trouble, Focused)",
-        },
-        {
-            "<leader>e",
-            function()
-                vim.lsp.buf.hover()
-            end,
-            desc = "Show error description",
+            desc = "Toggle diagnostics overview",
         },
         {
             "]e",

@@ -5,12 +5,9 @@ return {
             "tpope/vim-repeat",
         },
         config = function()
-            local leap = require("leap")
-            leap.add_default_mappings()
-
-            vim.keymap.set("n", "<Leader>j", "<Plug>(leap-forward)", {})
-            vim.keymap.set("n", "<Leader>l", "<Plug>(leap-line-forward)", {})
-            vim.keymap.set("n", "<Leader>w", "<Plug>(leap-cross-window)", {})
+            vim.keymap.set({ "n", "x", "o" }, "s", "<Plug>(leap-forward)", { desc = "Leap forward" })
+            vim.keymap.set({ "n", "x", "o" }, "S", "<Plug>(leap-backward)", { desc = "Leap backward" })
+            vim.keymap.set({ "n", "x", "o" }, "<Leader>j", "<Plug>(leap-from-window)", { desc = "Leap cross-window" })
         end,
     },
 }

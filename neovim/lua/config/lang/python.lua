@@ -3,6 +3,6 @@ return {
         python = { "pyright", "ruff" },
     },
     formatters = {
-        python = { "black" },
+        python = { "ruff_format" },
     },
 }

@@ -1,7 +1,11 @@
 return {
     servers = {
-        bash = { "bashls", "shellcheck", "shfmt" },
-        sh = { "bashls", "shellcheck", "shfmt" },
-        zsh = { "bashls", "shellcheck" },
+        bash = { "bashls" },
+        sh = { "bashls" },
+        zsh = { "bashls" },
+    },
+    formatters = {
+        bash = { "shfmt" },
+        sh = { "shfmt" },
     },
 }
