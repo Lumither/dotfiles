@@ -2,7 +2,6 @@ local lang = require("config.lang")
 local ft_servers = lang.ft_servers
 local server_configs = lang.server_configs
 
--- Diagnostic display
 vim.diagnostic.config({
     underline = true,
     virtual_text = { spacing = 2 },
@@ -18,7 +17,6 @@ vim.diagnostic.config({
     },
 })
 
--- Mason setup
 require("mason").setup({
     ui = {
         icons = {
@@ -33,19 +31,16 @@ require("mason-lspconfig").setup({
     automatic_installation = false,
 })
 
--- Enable a server using vim.lsp.config (neovim 0.11+)
 local function enable_server(server_name)
     local config = server_configs[server_name] or {}
     vim.lsp.config(server_name, config)
     vim.lsp.enable(server_name)
 end
 
--- Enable all already-installed servers
 for _, server in ipairs(require("mason-lspconfig").get_installed_servers()) do
     enable_server(server)
 end
 
--- On-demand installation via FileType autocmd
 local installed_cache = {}
 
 local function install_servers(ft, servers)
@@ -53,7 +48,6 @@ local function install_servers(ft, servers)
     local mason_lspconfig = require("mason-lspconfig")
 
     for _, server in ipairs(servers) do
-        -- Already available on PATH, just enable it
         if vim.fn.executable(server) == 1 then
             enable_server(server)
             goto continue
@@ -76,7 +70,6 @@ local function install_servers(ft, servers)
                 end
             end))
         elseif not pkg_ok then
-            -- Not in Mason, try enabling anyway (lspconfig may know the real binary)
             enable_server(server)
         end
 

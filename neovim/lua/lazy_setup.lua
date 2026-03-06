@@ -16,20 +16,25 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- Make sure to setup `mapleader` and `maplocalleader` before
--- loading lazy.nvim so that mappings are correct.
--- This is also a good place to setup other settings (vim.opt)
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
--- Setup lazy.nvim
-require("lazy").setup({
-    spec = {
+local spec = {
+    { import = "plugins.editor.surround" },
+    { import = "plugins.editor.jump" },
+    { import = "plugins.editor.which_key" },
+}
+
+if not vim.g.vscode then
+    vim.list_extend(spec, {
         { import = "plugins.theme" },
         { import = "plugins.ui" },
         { import = "plugins.editor" },
-        { import = "plugins.lsp" }
-    },
-    -- automatically check for plugin updates
-    checker = { enabled = true }
+        { import = "plugins.lsp" },
+    })
+end
+
+require("lazy").setup({
+    spec = spec,
+    checker = { enabled = not vim.g.vscode },
 })

@@ -1,8 +1,6 @@
 return {
-    -- VCS
     "**/.git/**",
 
-    -- JS/TS
     "**/node_modules/**",
     "**/jspm_packages/**",
     "**/bower_components/**",
@@ -14,7 +12,6 @@ return {
     "**/.cache/**",
     "**/.webpack/**",
 
-    -- Python
     "**/venv/**",
     "**/.venv/**",
     "**/__pycache__/**",
@@ -25,17 +22,14 @@ return {
     "**/.pytest_cache/**",
     "**/.eggs/**",
 
-    -- Rust / Java / C++
     "**/target/**",
 
-    -- Build output
     "**/build/**",
     "**/dist/**",
     "**/debug/**",
     "**/_build/**",
     "**/out/**",
 
-    -- Misc
     "**/.serverless/**",
     "**/coverage/**",
 }
