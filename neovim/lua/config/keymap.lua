@@ -48,6 +48,7 @@ if vim.g.vscode then
     map("n", "<leader>d", function() call("editor.action.showHover") end, { desc = "Hover docs" })
     map("n", "<leader>rn", function() call("editor.action.rename") end, { desc = "Rename symbol" })
     map("n", "<leader>ca", function() call("editor.action.quickFix") end, { desc = "Code action" })
+    map({ "n", "v" }, "<A-CR>", function() call("editor.action.quickFix") end, { desc = "Code action" })
     map("n", "gs", function() call("outline.focus") end, { desc = "Document symbols" })
     map("n", "gS", function() call("workbench.action.gotoSymbol") end, { desc = "Document symbols (picker)" })
 
@@ -80,7 +81,7 @@ else
             map("n", "<leader>D", function() require("telescope.builtin").lsp_implementations() end, vim.tbl_extend("force", opts, { desc = "Implementation" }))
             map("n", "<leader>d", function() vim.lsp.buf.hover() end, vim.tbl_extend("force", opts, { desc = "Hover docs" }))
             map("n", "<leader>rn", vim.lsp.buf.rename, vim.tbl_extend("force", opts, { desc = "Rename symbol" }))
-            map("n", "<leader>ca", vim.lsp.buf.code_action, vim.tbl_extend("force", opts, { desc = "Code action" }))
+            map({ "n", "v" }, "<leader>ca", function() require("actions-preview").code_actions() end, vim.tbl_extend("force", opts, { desc = "Code action (preview)" }))
             map("n", "gs", function() require("trouble").toggle("symbols") end, { desc = "Document symbols" })
             map("n", "gS", function() require("telescope.builtin").lsp_document_symbols() end, vim.tbl_extend("force", opts, { desc = "Document symbols" }))
         end,

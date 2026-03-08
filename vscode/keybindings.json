@@ -1,9 +1,12 @@
+// vim: ft=jsonc
 [
+    // explorer: open file in split right
     {
         "key": "s",
         "command": "explorer.openToSide",
         "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
     },
+    // explorer: open file in split below
     {
         "key": "shift+s",
         "command": "runCommands",
@@ -14,5 +17,17 @@
             ]
         },
         "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
+    },
+    // focus back to editor from terminal/sidebar/panels
+    {
+        "key": "ctrl+w e",
+        "command": "workbench.action.focusActiveEditorGroup",
+        "when": "!editorTextFocus"
+    },
+    // code action / quick fix
+    {
+        "key": "alt+enter",
+        "command": "editor.action.quickFix",
+        "when": "editorTextFocus"
     }
 ]

@@ -16,39 +16,23 @@ return {
             local sel_fg = palette.sumiInk0
 
             return {
-                -- Transparent backgrounds
-                LineNr = { bg = "none" },
-                CursorLineNr = { fg = palette.fujiWhite, bg = "none", bold = true },
-                SignColumn = { bg = "none" },
-                FoldColumn = { bg = "none" },
-                NormalDark = { bg = "none" },
-                LazyNormal = { bg = "none" },
-                MasonNormal = { bg = "none" },
-                NeoTreeNormal = { bg = "none" },
-                MsgArea = { fg = fg },
-
-                -- Visual selection & cursor line
                 Visual = { bg = palette.waveBlue2 },
                 CursorLine = { bg = palette.sumiInk3 },
 
-                -- Unified popup/float style
                 NormalFloat = { fg = fg, bg = bg },
                 FloatBorder = { fg = border, bg = bg },
                 FloatTitle = { fg = accent2, bg = bg, bold = true },
 
-                -- Diagnostic signs (global)
                 DiagnosticSignError = { fg = palette.peachRed, bg = "none" },
                 DiagnosticSignWarn = { fg = palette.carpYellow, bg = "none" },
                 DiagnosticSignHint = { fg = palette.waveAqua1, bg = "none" },
                 DiagnosticSignInfo = { fg = palette.springBlue, bg = "none" },
 
-                -- Neo-tree diagnostics
                 NeoTreeDiagnosticSignError = { fg = palette.peachRed, bg = "none" },
                 NeoTreeDiagnosticSignWarn = { fg = palette.carpYellow, bg = "none" },
                 NeoTreeDiagnosticSignHint = { fg = palette.waveAqua1, bg = "none" },
                 NeoTreeDiagnosticSignInfo = { fg = palette.springBlue, bg = "none" },
 
-                -- Neo-tree git status
                 NeoTreeGitAdded = { fg = palette.springGreen },
                 NeoTreeGitModified = { fg = palette.carpYellow },
                 NeoTreeGitDeleted = { fg = palette.peachRed },
@@ -61,22 +45,18 @@ return {
                 NeoTreeGitStaged = { fg = palette.springGreen },
                 NeoTreeGitConflict = { fg = palette.peachRed, bold = true },
 
-                -- Neo-tree dialogs
                 NeoTreeFileName = { fg = fg },
                 NeoTreeTitleBar = { fg = fg, bg = bg, bold = true },
 
-                -- Nui.nvim input (used by Neo-tree file create, rename, etc.)
                 NuiInput = { fg = fg, bg = bg },
                 NuiBorder = { fg = border, bg = bg },
                 NuiTitle = { fg = accent2, bg = bg, bold = true },
 
-                -- Completion menu (Pmenu)
                 Pmenu = { fg = fg, bg = bg },
                 PmenuSel = { fg = sel_fg, bg = sel_bg, bold = true },
                 PmenuSbar = { bg = palette.sumiInk3 },
                 PmenuThumb = { bg = accent2 },
 
-                -- Blink.cmp completion
                 BlinkCmpMenu = { fg = fg, bg = bg },
                 BlinkCmpMenuSelection = { fg = sel_fg, bg = sel_bg, bold = true },
                 BlinkCmpMenuBorder = { fg = border, bg = bg },
@@ -86,19 +66,12 @@ return {
                 BlinkCmpDoc = { fg = fg, bg = bg },
                 BlinkCmpDocBorder = { fg = border, bg = bg },
 
-                -- Window separators
                 WinSeparator = { fg = palette.sumiInk4, bg = "none" },
 
-                -- Trouble
-                TroubleNormal = { bg = "none" },
-                TroubleNormalNC = { bg = "none" },
-
-                -- Which-key
                 WhichKeyNormal = { fg = fg, bg = "none" },
                 WhichKeyBorder = { fg = border, bg = "none" },
                 WhichKeyTitle = { fg = accent2, bg = "none", bold = true },
 
-                -- Gitsigns (number line highlights)
                 GitSignsAddNr = { fg = "none", bg = palette.autumnGreen },
                 GitSignsChangeNr = { fg = "none", bg = palette.autumnYellow },
                 GitSignsDeleteNr = { fg = "none", bg = palette.autumnRed },

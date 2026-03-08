@@ -1,41 +1,51 @@
+// vim: ft=jsonc
 {
-    "security.workspace.trust.untrustedFiles": "open",
-    "workbench.colorTheme": "One Dark Pro Night Flat",
+    // editor
+    "editor.cursorSmoothCaretAnimation": "on",
+    "editor.inlineSuggest.showToolbar": "always",
+    "files.autoSave": "afterDelay",
     "files.readonlyInclude": {
         "**/.cargo/registry/src/**/*.rs": true,
-        "**/lib/rustlib/src/rust/library/**/*.rs": true,
+        "**/lib/rustlib/src/rust/library/**/*.rs": true
     },
-    "files.autoSave": "afterDelay",
-    "editor.cursorSmoothCaretAnimation": "on",
-    "git.enableCommitSigning": true,
-    "[markdown]": {
-        "editor.defaultFormatter": "yzhang.markdown-all-in-one"
-    },
-    "cmake.pinnedCommands": [
-        "workbench.action.tasks.configureTaskRunner",
-        "workbench.action.tasks.runTask"
-    ],
+    "security.workspace.trust.untrustedFiles": "open",
+
+    // workbench / ui
+    "workbench.colorTheme": "One Dark Pro Night Flat",
     "workbench.iconTheme": "vscode-jetbrains-icon-theme-2023-auto",
-    "extensions.experimental.affinity": {
-        "asvetliakov.vscode-neovim": 1
-    },
+    "workbench.secondarySideBar.defaultVisibility": "hidden",
+
+    // git
+    "git.enableCommitSigning": true,
+
+    // ai / copilot
     "chat.agent.enabled": false,
     "chat.commandCenter.enabled": false,
-    "workbench.secondarySideBar.defaultVisibility": "hidden",
-    "editor.inlineSuggest.showToolbar": "always",
     "github.copilot.enable": {
         "*": true,
         "plaintext": false,
         "markdown": false,
         "scminput": false
     },
-    "terminal.integrated.commandsToSkipShell": [
-        "language-julia.interrupt"
-    ],
-    "julia.symbolCacheDownload": true,
-    "python.defaultInterpreterPath": "/Users/lumither/dev/tools/netease_login/.venv",
-    "C_Cpp.intelliSenseEngine": "disabled",
-    "docker.extension.enableComposeLanguageServer": false,
+
+    // extensions
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    },
+    "gitlens.ai.model": "vscode",
+    "gitlens.ai.vscode.model": "copilot:gpt-4.1",
+    "claudeCode.preferredLocation": "panel",
+
+    // language-specific overrides
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[markdown]": {
+        "editor.defaultFormatter": "yzhang.markdown-all-in-one"
+    },
+    "[latex]": {
+        "editor.defaultFormatter": "mathematic.vscode-latex"
+    },
     "[dockercompose]": {
         "editor.insertSpaces": true,
         "editor.tabSize": 2,
@@ -50,14 +60,17 @@
     "[github-actions-workflow]": {
         "editor.defaultFormatter": "redhat.vscode-yaml"
     },
-    "[latex]": {
-        "editor.defaultFormatter": "mathematic.vscode-latex"
-    },
+
+    // language tooling
+    "C_Cpp.intelliSenseEngine": "disabled",
+    "cmake.pinnedCommands": [
+        "workbench.action.tasks.configureTaskRunner",
+        "workbench.action.tasks.runTask"
+    ],
+    "docker.extension.enableComposeLanguageServer": false,
+    "julia.symbolCacheDownload": true,
     "makefile.configureOnOpen": true,
-    "gitlens.ai.model": "vscode",
-    "gitlens.ai.vscode.model": "copilot:gpt-4.1",
-    "[json]": {
-        "editor.defaultFormatter": "vscode.json-language-features"
-    },
-    "claudeCode.preferredLocation": "panel"
+    "terminal.integrated.commandsToSkipShell": [
+        "language-julia.interrupt"
+    ]
 }

@@ -55,7 +55,10 @@ link() {
 }
 
 # -- main ------------------------------------------------------------------
+_ran_hooks=""
 filter=("$@")
+
+_hook_ran() { echo "$_ran_hooks" | grep -qx "$1"; }
 
 for entry in "${links[@]}"; do
     IFS='|' read -r name src dst <<< "$entry"
@@ -71,5 +74,21 @@ for entry in "${links[@]}"; do
         $match || continue
     fi
 
+    pre_hook="$DOTFILES/$name/pre-install.sh"
+    if [ -x "$pre_hook" ] && ! _hook_ran "pre:$name"; then
+        green "  hook  $pre_hook"
+        "$pre_hook"
+        _ran_hooks="$_ran_hooks
+pre:$name"
+    fi
+
     link "$DOTFILES/$src" "$dst"
+
+    post_hook="$DOTFILES/$name/post-install.sh"
+    if [ -x "$post_hook" ] && ! _hook_ran "post:$name"; then
+        green "  hook  $post_hook"
+        "$post_hook"
+        _ran_hooks="$_ran_hooks
+post:$name"
+    fi
 done

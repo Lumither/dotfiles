@@ -1,1 +1,2 @@
-vim.cmd('colorscheme kanagawa')
+require("config.highlights").setup()
+vim.cmd("colorscheme kanagawa")
