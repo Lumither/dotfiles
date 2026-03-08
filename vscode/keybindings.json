@@ -1,0 +1,18 @@
+[
+    {
+        "key": "s",
+        "command": "explorer.openToSide",
+        "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
+    },
+    {
+        "key": "shift+s",
+        "command": "runCommands",
+        "args": {
+            "commands": [
+                "explorer.openAndPassFocus",
+                "workbench.action.moveEditorToBelowGroup"
+            ]
+        },
+        "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
+    }
+]
