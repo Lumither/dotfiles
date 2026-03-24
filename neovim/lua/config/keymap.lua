@@ -8,6 +8,10 @@ map({ "n", "v" }, "L", "$", { desc = "Line end" })
 map({ "n", "v" }, "J", "3j", { desc = "Move down 3 lines" })
 map({ "n", "v" }, "K", "3k", { desc = "Move up 3 lines" })
 
+for i = 1, 9 do
+    map("n", "<C-w>" .. i, i .. "<C-w>w", { desc = "Go to window " .. i })
+end
+
 map("n", "yy", '"+yy', { desc = "Yank line to clipboard" })
 map("v", "y", '"+y', { desc = "Yank selection to clipboard" })
 map("n", "p", '"+p', { desc = "Paste from clipboard after" })

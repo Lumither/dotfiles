@@ -27,7 +27,7 @@ return {
                 if #bufs > 1 then
                     vim.cmd("BufferLineCyclePrev")
                 end
-                vim.cmd("bdelete " .. bufnr)
+                vim.cmd("bdelete! " .. bufnr)
             end,
         },
     },
@@ -35,11 +35,12 @@ return {
         { "[b", "<cmd>BufferLineCyclePrev<cr>", desc = "Previous buffer" },
         { "]b", "<cmd>BufferLineCycleNext<cr>", desc = "Next buffer" },
         { "<leader>x", function()
+            local bufnr = vim.api.nvim_get_current_buf()
             local bufs = vim.fn.getbufinfo({ buflisted = 1 })
             if #bufs > 1 then
                 vim.cmd("BufferLineCyclePrev")
             end
-            vim.cmd("bdelete #")
+            vim.cmd("bdelete! " .. bufnr)
         end, desc = "Close buffer" },
     },
 }

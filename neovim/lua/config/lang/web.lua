@@ -1,9 +1,9 @@
 return {
     servers = {
-        javascript = { "vtsls", "eslint" },
-        javascriptreact = { "vtsls", "eslint" },
-        typescript = { "vtsls", "eslint" },
-        typescriptreact = { "vtsls", "eslint" },
+        javascript = { "vtsls", "eslint", "tailwindcss" },
+        javascriptreact = { "vtsls", "eslint", "tailwindcss" },
+        typescript = { "vtsls", "eslint", "tailwindcss" },
+        typescriptreact = { "vtsls", "eslint", "tailwindcss" },
         json = { "jsonls" },
         astro = { "astro", "tailwindcss" },
         css = { "cssls", "tailwindcss" },
@@ -14,6 +14,15 @@ return {
         vue = { "volar", "tailwindcss" },
         graphql = { "graphql" },
         prisma = { "prismals" },
+    },
+    lsp_config = {
+        cssls = {
+            settings = {
+                css = { lint = { unknownAtRules = "ignore" } },
+                scss = { lint = { unknownAtRules = "ignore" } },
+                less = { lint = { unknownAtRules = "ignore" } },
+            },
+        },
     },
     formatters = {
         javascript = { "biome" },
