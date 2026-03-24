@@ -29,5 +29,43 @@
         "key": "alt+enter",
         "command": "editor.action.quickFix",
         "when": "editorTextFocus"
+    },
+    // tabby: accept inline completion
+    {
+        "key": "cmd+enter",
+        "command": "tabby.inlineCompletion.accept",
+        "when": "editorTextFocus && tabby.inlineCompletionVisible"
+    },
+    // tabby: trigger or dismiss inline completion
+    {
+        "key": "cmd+\\",
+        "command": "tabby.inlineCompletion.trigger",
+        "when": "editorTextFocus && !tabby.inlineCompletionVisible"
+    },
+    {
+        "key": "cmd+\\",
+        "command": "tabby.inlineCompletion.dismiss",
+        "when": "editorTextFocus && tabby.inlineCompletionVisible"
+    },
+    {
+        "key": "shift+escape",
+        "command": "-workbench.action.terminal.clearSelection",
+        "when": "terminalFocusInAny && terminalHasBeenCreated && terminalTextSelected"
+    },
+    // close active panel with shift+esc
+    {
+        "key": "shift+escape",
+        "command": "workbench.action.closePanel",
+        "when": "panelFocus || terminalFocus"
+    },
+    {
+        "key": "shift+escape",
+        "command": "workbench.action.closeSidebar",
+        "when": "sideBarFocus"
+    },
+    {
+        "key": "shift+escape",
+        "command": "workbench.action.closeAuxiliaryBar",
+        "when": "auxiliaryBarFocus"
     }
 ]

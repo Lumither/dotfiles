@@ -18,24 +18,19 @@
     // git
     "git.enableCommitSigning": true,
 
-    // ai / copilot
+    // ai / copilot — disabled; using tabby for completions
     "chat.agent.enabled": false,
     "chat.commandCenter.enabled": false,
     "github.copilot.enable": {
-        "*": true,
-        "plaintext": false,
-        "markdown": false,
-        "scminput": false
+        "*": false
     },
+    "github.copilot.editor.enableAutoCompletions": false,
+    "github.copilot.chat.enabled": false,
 
     // extensions
     "extensions.experimental.affinity": {
         "asvetliakov.vscode-neovim": 1
     },
-    "gitlens.ai.model": "vscode",
-    "gitlens.ai.vscode.model": "copilot:gpt-4.1",
-    "claudeCode.preferredLocation": "panel",
-
     // language-specific overrides
     "[json]": {
         "editor.defaultFormatter": "vscode.json-language-features"
@@ -71,6 +66,29 @@
     "julia.symbolCacheDownload": true,
     "makefile.configureOnOpen": true,
     "terminal.integrated.commandsToSkipShell": [
-        "language-julia.interrupt"
-    ]
+        "language-julia.interrupt",
+        "workbench.action.closePanel"
+    ],
+    "python.analysis.typeCheckingMode": "basic",
+    "rust-analyzer.check.command": "clippy",
+    // "rust-analyzer.check.extraArgs": ["--", "-W", "clippy::pedantic"],
+    "tabby.settings.advanced": {
+        "inlineCompletion.disabledLanguages": [
+            "markdown"
+        ]
+    },
+    "json.schemaDownload.trustedDomains": {
+        "https://developer.microsoft.com/json-schemas/": true,
+        "https://json-schema.org/": true,
+        "https://json.schemastore.org/": true,
+        "https://raw.githubusercontent.com/DavidAnson/markdownlint/v0.40.0/schema/markdownlint-config-schema.json": true,
+        "https://raw.githubusercontent.com/devcontainers/spec/": true,
+        "https://raw.githubusercontent.com/microsoft/vscode/": true,
+        "https://schemastore.azurewebsites.net/": true,
+        "https://www.schemastore.org/": true
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "chat.disableAIFeatures": true
 }
