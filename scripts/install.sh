@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-DOTFILES="$(cd "$(dirname "$0")" && pwd)"
+DOTFILES="$(cd "$(dirname "$0")/.." && pwd)"
 OS="$(uname)"
 
 # -- platform-specific paths -----------------------------------------------
@@ -27,6 +27,9 @@ links=(
     "alacritty  | alacritty/alacritty.toml  | $HOME/.alacritty.toml"
     "vim        | vim/vimrc                 | $HOME/.vimrc"
     "ideavim    | ideavim/ideavimrc         | $HOME/.ideavimrc"
+    "zsh        | zsh/zshrc                 | $HOME/.zshrc"
+    "zsh        | zsh/zprofile              | $HOME/.zprofile"
+    "tmux       | tmux/tmux.conf            | $HOME/.tmux.conf"
 )
 
 # -- helpers ---------------------------------------------------------------

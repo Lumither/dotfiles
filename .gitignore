@@ -1,1 +1,5 @@
 .claude
+zsh/local.zsh
+zsh/.zcompdump
+zsh/external/*.zsh
+mnt/

@@ -1,0 +1,18 @@
+ZSHDIR="${0:A:h}"
+[[ "$ZSHDIR" != */zsh ]] && ZSHDIR="${$(realpath ${ZDOTDIR:-$HOME}/.zshrc):h}"
+
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+for conf in "$ZSHDIR"/external/*.zsh(N); do
+    source "$conf"
+done
+
+for conf in "$ZSHDIR"/conf.d/*.zsh(N); do
+    source "$conf"
+done
+
+typeset -U path
+
+[[ -f "$ZSHDIR/local.zsh" ]] && source "$ZSHDIR/local.zsh"
