@@ -70,6 +70,21 @@ if vim.g.vscode then
 
     map("n", "<C-`>", function() call("workbench.action.terminal.toggleTerminal") end, { desc = "Toggle terminal" })
 else
+    map("n", "<S-Esc>", function()
+        local closed = false
+        for _, win in ipairs(vim.api.nvim_list_wins()) do
+            local buf = vim.api.nvim_win_get_buf(win)
+            local ft = vim.bo[buf].filetype
+            if ft == "neo-tree" or ft == "trouble" or ft == "toggleterm" then
+                vim.api.nvim_win_close(win, true)
+                closed = true
+            end
+        end
+        if not closed then
+            vim.cmd("only")
+        end
+    end, { desc = "Close side panels" })
+
     map("n", "<C-w>s", "<cmd>vsplit<cr>", { desc = "Vertical split" })
     map("n", "<C-w>S", "<cmd>split<cr>", { desc = "Horizontal split" })
 
