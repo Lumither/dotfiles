@@ -7,6 +7,7 @@ vim.diagnostic.config({
     virtual_text = { spacing = 2 },
     update_in_insert = true,
     severity_sort = true,
+    float = { border = "rounded" },
     signs = {
         text = {
             [vim.diagnostic.severity.ERROR] = "E",

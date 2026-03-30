@@ -27,7 +27,6 @@ local spec = {
 
 if not vim.g.vscode then
     vim.list_extend(spec, {
-        { import = "plugins.theme" },
         { import = "plugins.ui" },
         { import = "plugins.editor" },
         { import = "plugins.lsp" },

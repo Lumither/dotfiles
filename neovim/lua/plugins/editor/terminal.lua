@@ -11,9 +11,5 @@ return {
         open_mapping = "<C-`>",
         direction = "horizontal",
         shade_terminals = false,
-        highlights = {
-            Normal = { link = "Normal" },
-            NormalFloat = { link = "Normal" },
-        },
     },
 }

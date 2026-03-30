@@ -1,5 +1,5 @@
 return {
-    'TabbyML/vim-tabby',
+    'Lumither/vim-tabby',
     lazy = false,
     dependencies = { 'neovim/nvim-lspconfig' },
     init = function()

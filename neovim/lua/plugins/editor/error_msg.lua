@@ -7,20 +7,13 @@ return {
             folder_closed = "+ ",
             folder_open = "- ",
         },
-        win = {
-            wo = {
-                winhighlight = "Normal:Normal,NormalNC:Normal,EndOfBuffer:Normal",
-            },
-        },
+        win = {},
         modes = {
             symbols = {
                 focus = true,
                 win = {
                     position = "right",
                     size = 40,
-                    wo = {
-                        winhighlight = "Normal:Normal,NormalNC:Normal,EndOfBuffer:Normal",
-                    },
                 },
             },
         },
