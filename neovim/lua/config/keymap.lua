@@ -8,6 +8,8 @@ map({ "n", "v" }, "L", "$", { desc = "Line end" })
 map({ "n", "v" }, "J", "3j", { desc = "Move down 3 lines" })
 map({ "n", "v" }, "K", "3k", { desc = "Move up 3 lines" })
 
+map("t", "<S-Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+
 for i = 1, 9 do
     map("n", "<C-w>" .. i, i .. "<C-w>w", { desc = "Go to window " .. i })
 end
@@ -75,7 +77,7 @@ else
         for _, win in ipairs(vim.api.nvim_list_wins()) do
             local buf = vim.api.nvim_win_get_buf(win)
             local ft = vim.bo[buf].filetype
-            if ft == "neo-tree" or ft == "trouble" or ft == "toggleterm" then
+            if ft == "NvimTree" or ft == "trouble" or ft == "toggleterm" then
                 vim.api.nvim_win_close(win, true)
                 closed = true
             end
@@ -88,8 +90,8 @@ else
     map("n", "<C-w>s", "<cmd>vsplit<cr>", { desc = "Vertical split" })
     map("n", "<C-w>S", "<cmd>split<cr>", { desc = "Horizontal split" })
 
-    map("n", "<leader>f", "<cmd>Neotree reveal<cr>", { desc = "Reveal file in tree" })
-    map("n", "<leader>t", "<cmd>Neotree toggle<cr>", { desc = "Toggle file tree" })
+    map("n", "<leader>f", "<cmd>NvimTreeFindFile<cr>", { desc = "Reveal file in tree" })
+    map("n", "<leader>t", "<cmd>NvimTreeToggle<cr>", { desc = "Toggle file tree" })
     vim.api.nvim_create_autocmd("LspAttach", {
         group = vim.api.nvim_create_augroup("UserLspKeymaps", { clear = true }),
         callback = function(ev)

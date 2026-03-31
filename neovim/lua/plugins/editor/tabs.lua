@@ -4,7 +4,17 @@ return {
     dependencies = {},
     event = "VeryLazy",
     opts = {
-        options = {
+        highlights = {
+                fill = {
+                    link = "Normal",
+                },
+            },
+            options = {
+                get_element_icon = function(element)
+                    if element.filetype == "NvimTree" or vim.fn.isdirectory(element.path) == 1 then
+                        return "+", "Directory"
+                    end
+                end,
             buffer_close_icon = "x",
             modified_icon = "*",
             close_icon = "x",
@@ -14,14 +24,14 @@ return {
                 icon = "|",
                 style = "icon",
             },
-            offsets = {
-                {
-                    filetype = "neo-tree",
-                    text = "File Explorer",
-                    text_align = "left",
-                    separator = true,
-                },
-            },
+            -- offsets = {
+            --     {
+            --         filetype = "NvimTree",
+            --         text = "File Explorer",
+            --         text_align = "left",
+            --         separator = true,
+            --     },
+            -- },
             close_command = function(bufnr)
                 local bufs = vim.fn.getbufinfo({ buflisted = 1 })
                 if #bufs > 1 then

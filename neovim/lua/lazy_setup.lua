@@ -35,5 +35,6 @@ end
 
 require("lazy").setup({
     spec = spec,
-    checker = { enabled = not vim.g.vscode },
+    -- checker = { enabled = not vim.g.vscode },
+    checker = { enabled = false },
 })
