@@ -37,6 +37,15 @@ if not vim.g.vscode then
     vim.o.swapfile = false
 
     vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal"
+    vim.api.nvim_create_autocmd("TermOpen", {
+        callback = function()
+            vim.opt_local.wrap = true
+            vim.opt_local.sidescrolloff = 0
+            vim.keymap.set("t", "<ScrollWheelLeft>", "<Nop>", { buffer = 0, silent = true })
+            vim.keymap.set("t", "<ScrollWheelRight>", "<Nop>", { buffer = 0, silent = true })
+        end,
+    })
+
     vim.api.nvim_create_autocmd("BufReadPost", {
         callback = function()
             local mark = vim.api.nvim_buf_get_mark(0, '"')
