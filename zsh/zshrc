@@ -1,3 +1,5 @@
+# ===== ZSHRC START =====
+
 ZSHDIR="${0:A:h}"
 [[ "$ZSHDIR" != */zsh ]] && ZSHDIR="${$(realpath ${ZDOTDIR:-$HOME}/.zshrc):h}"
 
@@ -16,3 +18,5 @@ done
 typeset -U path
 
 [[ -f "$ZSHDIR/local.zsh" ]] && source "$ZSHDIR/local.zsh"
+
+# ===== ZSHRC END =====
