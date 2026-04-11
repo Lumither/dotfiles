@@ -11,13 +11,32 @@ return {
             enabled = true,
         },
         appearance = {
-            nerd_font_variant = 'mono',
+            kind_icons = {
+                Text = 'TX', Method = 'FN', Function = 'FN', Constructor = 'FN',
+                Field = 'FD', Variable = 'VR', Class = 'CL', Interface = 'IF',
+                Module = 'MD', Property = 'FD', Unit = 'UT', Value = 'VL',
+                Enum = 'EN', Keyword = 'KW', Snippet = 'SP', Color = 'CL',
+                File = 'FL', Reference = 'RF', Folder = 'DR', EnumMember = 'EM',
+                Constant = 'CT', Struct = 'ST', Event = 'EV', Operator = 'OP',
+                TypeParameter = 'TP',
+            },
         },
         completion = {
-            documentation = { auto_show = true },
+            documentation = { auto_show = true, treesitter_highlighting = true },
+            menu = { draw = { treesitter = { 'lsp' } } },
         },
         sources = {
             default = { 'lsp', 'path', 'snippets', 'buffer' },
+            providers = {
+                lsp = {
+                    transform_items = function(_, items)
+                        return vim.tbl_filter(function(item)
+                            local client = vim.lsp.get_client_by_id(item.client_id)
+                            return not client or client.name ~= "tabby"
+                        end, items)
+                    end,
+                },
+            },
         },
         fuzzy = {
             implementation = "prefer_rust_with_warning",

@@ -1,6 +1,7 @@
 local lang = require("config.lang")
 local ft_servers = lang.ft_servers
 local server_configs = lang.server_configs
+local formatters_by_ft = lang.formatters_by_ft
 
 vim.diagnostic.config({
     underline = true,
@@ -60,7 +61,7 @@ local function install_servers(ft, servers)
         local pkg_name = (ok and mapping) or server
 
         local pkg_ok, pkg = pcall(registry.get_package, pkg_name)
-        if pkg_ok and not pkg:is_installed() then
+        if pkg_ok and not pkg:is_installed() and not pkg:is_installing() then
             vim.notify("Mason: installing " .. pkg_name .. " for " .. ft, vim.log.levels.INFO)
             pkg:install():once("closed", vim.schedule_wrap(function()
                 if pkg:is_installed() then
@@ -78,14 +79,35 @@ local function install_servers(ft, servers)
     end
 end
 
+local function install_formatters(ft, formatters)
+    local registry = require("mason-registry")
+
+    for _, fmt in ipairs(formatters) do
+        if vim.fn.executable(fmt) == 1 then
+            goto continue
+        end
+
+        local pkg_name = string.gsub(fmt, "_", "-")
+        local pkg_ok, pkg = pcall(registry.get_package, pkg_name)
+        if pkg_ok and not pkg:is_installed() and not pkg:is_installing() then
+            vim.notify("Mason: installing " .. pkg_name .. " for " .. ft, vim.log.levels.INFO)
+            pkg:install():once("closed", vim.schedule_wrap(function()
+                if pkg:is_installed() then
+                    vim.notify("Mason: " .. pkg_name .. " installed", vim.log.levels.INFO)
+                else
+                    vim.notify("Mason: " .. pkg_name .. " failed to install", vim.log.levels.ERROR)
+                end
+            end))
+        end
+
+        ::continue::
+    end
+end
+
 vim.api.nvim_create_autocmd("FileType", {
     group = vim.api.nvim_create_augroup("MasonAutoInstall", { clear = true }),
     callback = function(ev)
         local ft = ev.match
-        local servers = ft_servers[ft]
-        if not servers then
-            return
-        end
 
         if installed_cache[ft] then
             return
@@ -95,7 +117,15 @@ vim.api.nvim_create_autocmd("FileType", {
         local registry = require("mason-registry")
         registry.refresh(function()
             vim.schedule(function()
-                install_servers(ft, servers)
+                local servers = ft_servers[ft]
+                if servers then
+                    install_servers(ft, servers)
+                end
+
+                local formatters = formatters_by_ft[ft]
+                if formatters then
+                    install_formatters(ft, formatters)
+                end
             end)
         end)
     end,

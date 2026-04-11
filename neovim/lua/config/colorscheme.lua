@@ -95,6 +95,7 @@ hl("@tag.delimiter",          { fg = colors.punct })
 
 hl("NormalFloat",              { link = "Normal" })
 hl("FloatBorder",             { link = "Normal" })
+hl("PmenuSel",                { bg = "#4A4A4A" })
 
 hl("markdownCode",            { fg = colors.string })
 hl("markdownCodeBlock",       { fg = colors.string })

@@ -16,6 +16,9 @@ end
 
 map("n", "yy", '"+yy', { desc = "Yank line to clipboard" })
 map("v", "y", '"+y', { desc = "Yank selection to clipboard" })
+map({ "n", "v" }, "d", '"+d', { desc = "Cut (clipboard)" })
+map({ "n", "v" }, "D", '"_d', { desc = "Delete (black hole)" })
+map("n", "DD", '"_dd', { desc = "Delete line (black hole)" })
 map("n", "p", '"+p', { desc = "Paste from clipboard after" })
 map("v", "p", '"+p', { desc = "Paste from clipboard after" })
 map("n", "P", '"+P', { desc = "Paste from clipboard before" })
