@@ -10,17 +10,17 @@ return {
         signature = {
             enabled = true,
         },
-        appearance = {
-            kind_icons = {
-                Text = 'TX', Method = 'FN', Function = 'FN', Constructor = 'FN',
-                Field = 'FD', Variable = 'VR', Class = 'CL', Interface = 'IF',
-                Module = 'MD', Property = 'FD', Unit = 'UT', Value = 'VL',
-                Enum = 'EN', Keyword = 'KW', Snippet = 'SP', Color = 'CL',
-                File = 'FL', Reference = 'RF', Folder = 'DR', EnumMember = 'EM',
-                Constant = 'CT', Struct = 'ST', Event = 'EV', Operator = 'OP',
-                TypeParameter = 'TP',
-            },
-        },
+        -- appearance = {
+        --     kind_icons = {
+        --         Text = 'TX', Method = 'FN', Function = 'FN', Constructor = 'FN',
+        --         Field = 'FD', Variable = 'VR', Class = 'CL', Interface = 'IF',
+        --         Module = 'MD', Property = 'FD', Unit = 'UT', Value = 'VL',
+        --         Enum = 'EN', Keyword = 'KW', Snippet = 'SP', Color = 'CL',
+        --         File = 'FL', Reference = 'RF', Folder = 'DR', EnumMember = 'EM',
+        --         Constant = 'CT', Struct = 'ST', Event = 'EV', Operator = 'OP',
+        --         TypeParameter = 'TP',
+        --     },
+        -- },
         completion = {
             documentation = { auto_show = true, treesitter_highlighting = true },
             menu = { draw = { treesitter = { 'lsp' } } },

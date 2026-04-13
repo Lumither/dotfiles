@@ -46,6 +46,22 @@ if not vim.g.vscode then
         end,
     })
 
+    local wrap_filetypes = { "markdown" }
+    vim.api.nvim_create_autocmd("FileType", {
+        pattern = wrap_filetypes,
+        callback = function()
+            vim.opt_local.wrap = true
+            vim.opt_local.linebreak = true
+            vim.opt_local.breakindent = true
+            vim.keymap.set({ "n", "v" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, buffer = true })
+            vim.keymap.set({ "n", "v" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, buffer = true })
+            vim.keymap.set({ "n", "v" }, "H", "g^", { buffer = true })
+            vim.keymap.set({ "n", "v" }, "L", "g$", { buffer = true })
+            vim.keymap.set({ "n", "v" }, "J", "3gj", { buffer = true })
+            vim.keymap.set({ "n", "v" }, "K", "3gk", { buffer = true })
+        end,
+    })
+
     vim.api.nvim_create_autocmd("BufReadPost", {
         callback = function()
             local mark = vim.api.nvim_buf_get_mark(0, '"')
