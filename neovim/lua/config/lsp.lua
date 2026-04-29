@@ -39,6 +39,21 @@ local function enable_server(server_name)
     vim.lsp.enable(server_name)
 end
 
+vim.api.nvim_create_user_command("LspRestart", function()
+    local clients = vim.lsp.get_clients({ bufnr = 0 })
+    local names = {}
+    for _, c in ipairs(clients) do
+        names[#names + 1] = c.name
+        c:stop(false)
+    end
+    vim.defer_fn(function()
+        for _, name in ipairs(names) do
+            vim.lsp.enable(name)
+        end
+        vim.cmd.edit()
+    end, 500)
+end, { desc = "Restart LSP clients for current buffer" })
+
 for _, server in ipairs(require("mason-lspconfig").get_installed_servers()) do
     enable_server(server)
 end
