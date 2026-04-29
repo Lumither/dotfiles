@@ -100,6 +100,15 @@ else
         callback = function(ev)
             local opts = { buffer = ev.buf }
 
+            if vim.lsp.inlay_hint then
+                map("n", "<leader>ih", function()
+                    vim.lsp.inlay_hint.enable(
+                        not vim.lsp.inlay_hint.is_enabled({ bufnr = ev.buf }),
+                        { bufnr = ev.buf }
+                    )
+                end, vim.tbl_extend("force", opts, { desc = "Toggle inlay hints" }))
+            end
+
             map("n", "gd", function() require("telescope.builtin").lsp_definitions() end, vim.tbl_extend("force", opts, { desc = "Go to definition" }))
             map("n", "gr", function() require("telescope.builtin").lsp_references() end, vim.tbl_extend("force", opts, { desc = "References" }))
             map("n", "<leader>D", function() require("telescope.builtin").lsp_implementations() end, vim.tbl_extend("force", opts, { desc = "Implementation" }))

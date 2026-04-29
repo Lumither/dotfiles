@@ -12,6 +12,12 @@ return {
                     check = {
                         command = "clippy",
                     },
+                    inlayHints = {
+                        typeHints              = { enable = true },
+                        parameterHints         = { enable = true },
+                        chainingHints          = { enable = true },
+                        closureReturnTypeHints = { enable = "always" },
+                    },
                 },
             },
         },
