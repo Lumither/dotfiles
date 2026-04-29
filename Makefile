@@ -1,5 +1,5 @@
 .PHONY: all
-all: setup submodules install health
+all: setup submodules health
 
 .PHONY: setup
 setup:
@@ -8,10 +8,6 @@ setup:
 .PHONY: submodules
 submodules:
 	git submodule update --init --recursive
-
-.PHONY: install
-install:
-	bash scripts/install.sh
 
 .PHONY: health
 health:
