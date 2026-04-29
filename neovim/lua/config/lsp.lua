@@ -119,6 +119,15 @@ local function install_formatters(ft, formatters)
     end
 end
 
+vim.api.nvim_create_autocmd("LspAttach", {
+    group = vim.api.nvim_create_augroup("UserLspBehavior", { clear = true }),
+    callback = function(ev)
+        if vim.lsp.inlay_hint then
+            vim.lsp.inlay_hint.enable(true, { bufnr = ev.buf })
+        end
+    end,
+})
+
 vim.api.nvim_create_autocmd("FileType", {
     group = vim.api.nvim_create_augroup("MasonAutoInstall", { clear = true }),
     callback = function(ev)
