@@ -93,6 +93,11 @@ else
     map("n", "<C-w>s", "<cmd>vsplit<cr>", { desc = "Vertical split" })
     map("n", "<C-w>S", "<cmd>split<cr>", { desc = "Horizontal split" })
 
+    map("n", "<A-h>", "<C-w>h", { desc = "Window left" })
+    map("n", "<A-j>", "<C-w>j", { desc = "Window down" })
+    map("n", "<A-k>", "<C-w>k", { desc = "Window up" })
+    map("n", "<A-l>", "<C-w>l", { desc = "Window right" })
+
     map("n", "<leader>f", "<cmd>NvimTreeFindFile<cr>", { desc = "Reveal file in tree" })
     map("n", "<leader>t", "<cmd>NvimTreeToggle<cr>", { desc = "Toggle file tree" })
     vim.api.nvim_create_autocmd("LspAttach", {

@@ -35,7 +35,7 @@ return {
         nix = { "nil_ls" },
         perl = { "perlnavigator" },
         php = { "phpactor" },
-        proto = { "pbls" },
+        proto = { "buf_ls" },
         purescript = { "purescriptls" },
         r = { "r_language_server" },
         ruby = { "solargraph" },

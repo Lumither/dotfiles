@@ -31,6 +31,7 @@ require("mason").setup({
 
 require("mason-lspconfig").setup({
     automatic_installation = false,
+    automatic_enable = false,
 })
 
 local function enable_server(server_name)
@@ -54,8 +55,12 @@ vim.api.nvim_create_user_command("LspRestart", function()
     end, 500)
 end, { desc = "Restart LSP clients for current buffer" })
 
+local skip_servers = { rust_analyzer = true }
+
 for _, server in ipairs(require("mason-lspconfig").get_installed_servers()) do
-    enable_server(server)
+    if not skip_servers[server] then
+        enable_server(server)
+    end
 end
 
 local installed_cache = {}
