@@ -50,6 +50,14 @@ check_cmd "ripgrep" "rg"
 check_cmd "fzf" "fzf"
 
 echo
+echo "desktop binaries:"
+check_cmd "niri" "niri"
+check_cmd "waybar" "waybar"
+check_cmd "mako" "mako"
+check_cmd "kanata" "kanata"
+check_cmd "awww" "awww"
+
+echo
 if [[ $fail -eq 0 ]]; then
     printf '\033[32mall %d checks passed\033[0m\n' "$ok"
 else

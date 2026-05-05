@@ -30,6 +30,15 @@ links=(
     "zsh        | zsh/zshrc                 | $HOME/.zshrc"
     "zsh        | zsh/zprofile              | $HOME/.zprofile"
     "tmux       | tmux/tmux.conf            | $HOME/.tmux.conf"
+    "niri       | desktop/niri              | $HOME/.config/niri"
+    "waybar     | desktop/waybar            | $HOME/.config/waybar"
+    "mako       | desktop/mako              | $HOME/.config/mako"
+    "kanata     | desktop/kanata/kanata.kbd | $HOME/.config/kanata.kbd"
+)
+
+# -- groups: alias | members -----------------------------------------------
+groups=(
+    "desktop | niri waybar mako kanata"
 )
 
 # -- helpers ---------------------------------------------------------------
@@ -59,7 +68,21 @@ link() {
 
 # -- main ------------------------------------------------------------------
 _ran_hooks=""
-filter=("$@")
+
+filter=()
+for arg in "$@"; do
+    hit=""
+    for g in "${groups[@]}"; do
+        IFS='|' read -r gname members <<< "$g"
+        gname="$(echo "$gname" | xargs)"
+        members="$(echo "$members" | xargs)"
+        if [ "$gname" = "$arg" ]; then
+            for m in $members; do filter+=("$m"); done
+            hit=1; break
+        fi
+    done
+    [ -z "$hit" ] && filter+=("$arg")
+done
 
 _hook_ran() { echo "$_ran_hooks" | grep -qx "$1"; }
 
