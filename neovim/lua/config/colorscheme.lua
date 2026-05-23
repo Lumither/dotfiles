@@ -115,3 +115,16 @@ hl("BlinkCmpKindConstant",        { fg = colors.constant })
 
 hl("markdownCode",            { fg = colors.string })
 hl("markdownCodeBlock",       { fg = colors.string })
+
+hl("IblScope",                { fg = colors.comment })
+
+for _, group in ipairs({
+    "Normal", "NormalNC",
+    "SignColumn", "FoldColumn",
+    "LineNr", "LineNrAbove", "LineNrBelow",
+    "EndOfBuffer", "MsgArea",
+    "WinSeparator", "VertSplit",
+    "NvimTreeNormal", "NvimTreeNormalNC", "NvimTreeEndOfBuffer",
+}) do
+    hl(group, { bg = "NONE" })
+end

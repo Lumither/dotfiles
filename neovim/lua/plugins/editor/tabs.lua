@@ -5,16 +5,20 @@ return {
     event = "VeryLazy",
     opts = {
         highlights = {
-                fill = {
-                    link = "Normal",
-                },
+            fill = {
+                link = "Normal",
             },
-            options = {
-                get_element_icon = function(element)
-                    if element.filetype == "NvimTree" or vim.fn.isdirectory(element.path) == 1 then
-                        return "+", "Directory"
-                    end
-                end,
+        },
+        options = {
+            get_element_icon = function(element)
+                if element.filetype == "NvimTree" or vim.fn.isdirectory(element.path) == 1 then
+                    return "+", "Directory"
+                end
+                local stat = element.path and vim.uv.fs_lstat(element.path)
+                if stat and stat.type == "link" then
+                    return "&", "Directory"
+                end
+            end,
             buffer_close_icon = "x",
             modified_icon = "*",
             close_icon = "x",
