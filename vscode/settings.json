@@ -3,6 +3,7 @@
     // editor
     "editor.cursorSmoothCaretAnimation": "on",
     "editor.inlineSuggest.showToolbar": "always",
+    "editor.formatOnSave": true,
     "files.autoSave": "afterDelay",
     "files.readonlyInclude": {
         "**/.cargo/registry/src/**/*.rs": true,
@@ -13,6 +14,11 @@
     // workbench / ui
     "workbench.iconTheme": "vscode-jetbrains-icon-theme-2023-auto",
     "workbench.secondarySideBar.defaultVisibility": "hidden",
+    "workbench.sideBar.location": "right",
+
+    // notebook
+    "notebook.output.scrolling": true,
+    "notebook.lineNumbers": "on",
 
     // git
     "git.enableCommitSigning": true,
@@ -20,6 +26,7 @@
     // ai / copilot — disabled; using tabby for completions
     "chat.agent.enabled": false,
     "chat.commandCenter.enabled": false,
+    "chat.disableAIFeatures": true,
     "github.copilot.enable": {
         "*": false
     },
@@ -33,6 +40,11 @@
     // language-specific overrides
     "[json]": {
         "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features",
+        "editor.tabSize": 4,
+        "editor.insertSpaces": true
     },
     "[markdown]": {
         "editor.defaultFormatter": "yzhang.markdown-all-in-one"
@@ -54,6 +66,9 @@
     "[github-actions-workflow]": {
         "editor.defaultFormatter": "redhat.vscode-yaml"
     },
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
 
     // language tooling
     "C_Cpp.intelliSenseEngine": "disabled",
@@ -74,7 +89,8 @@
     "tabby.settings.advanced": {
         "inlineCompletion.disabledLanguages": [
             "markdown"
-        ]
+        ],
+        "inlineCompletion.triggerMode": "manual"
     },
     "json.schemaDownload.trustedDomains": {
         "https://developer.microsoft.com/json-schemas/": true,
@@ -85,9 +101,5 @@
         "https://raw.githubusercontent.com/microsoft/vscode/": true,
         "https://schemastore.azurewebsites.net/": true,
         "https://www.schemastore.org/": true
-    },
-    "[typescript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "chat.disableAIFeatures": true
+    }
 }
