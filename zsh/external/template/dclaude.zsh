@@ -4,13 +4,14 @@ _dclaude_get_key() {
             security find-generic-password -s "deepseek-anthropic-apikey" -w 2>/dev/null
             ;;
         Linux)
-            if command -v kwallet-query >/dev/null 2>&1; then
-                kwallet-query -r "deepseek-anthropic-apikey" -f "deepseek" kdewallet 2>/dev/null
-            elif command -v secret-tool >/dev/null 2>&1; then
-                secret-tool lookup service deepseek-anthropic-apikey 2>/dev/null
-            elif command -v pass >/dev/null 2>&1; then
-                pass show deepseek/anthropic-apikey 2>/dev/null
+            local key=""
+            if command -v secret-tool >/dev/null 2>&1; then
+                key=$(secret-tool lookup service deepseek-anthropic-apikey 2>/dev/null)
             fi
+            if [[ -z "$key" ]] && command -v pass >/dev/null 2>&1; then
+                key=$(pass show deepseek/anthropic-apikey 2>/dev/null)
+            fi
+            printf '%s' "$key"
             ;;
     esac
 }
