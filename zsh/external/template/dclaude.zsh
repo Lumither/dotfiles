@@ -20,6 +20,7 @@ dclaude() {
     local token=$(_dclaude_get_key)
     [[ -z "$token" ]] && { echo >&2 "dclaude: failed to retrieve API key"; return 1; }
 
+    DISABLE_TELEMETRY=1 \
     ANTHROPIC_BASE_URL="https://api.deepseek.com/anthropic" \
     ANTHROPIC_AUTH_TOKEN="$token" \
     ANTHROPIC_MODEL="deepseek-v4-pro[1m]" \

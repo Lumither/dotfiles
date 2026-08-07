@@ -6,7 +6,7 @@ local formatters_by_ft = lang.formatters_by_ft
 vim.diagnostic.config({
     underline = true,
     virtual_text = { spacing = 2 },
-    update_in_insert = true,
+    update_in_insert = false,
     severity_sort = true,
     float = { border = "rounded" },
     signs = {
@@ -42,17 +42,28 @@ end
 
 vim.api.nvim_create_user_command("LspRestart", function()
     local clients = vim.lsp.get_clients({ bufnr = 0 })
-    local names = {}
     for _, c in ipairs(clients) do
-        names[#names + 1] = c.name
         c:stop(false)
     end
-    vim.defer_fn(function()
-        for _, name in ipairs(names) do
-            vim.lsp.enable(name)
+
+    local timer = assert(vim.uv.new_timer())
+    local attempts = 50
+    timer:start(200, 100, vim.schedule_wrap(function()
+        local stopped = true
+        for _, c in ipairs(clients) do
+            if not c:is_stopped() then
+                stopped = false
+            end
         end
-        vim.cmd.edit()
-    end, 500)
+        attempts = attempts - 1
+        if stopped or attempts <= 0 then
+            timer:close()
+            if not stopped then
+                vim.notify("LspRestart: clients did not stop in time", vim.log.levels.WARN)
+            end
+            vim.cmd.edit()
+        end
+    end))
 end, { desc = "Restart LSP clients for current buffer" })
 
 local skip_servers = { rust_analyzer = true }

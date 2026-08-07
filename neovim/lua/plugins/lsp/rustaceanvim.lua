@@ -9,6 +9,7 @@ return {
                 default_settings = {
                     ["rust-analyzer"] = {
                         check = { command = "clippy" },
+                        files = { watcher = "server" },
                         inlayHints = {
                             typeHints              = { enable = true },
                             parameterHints         = { enable = true },

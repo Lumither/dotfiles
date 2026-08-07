@@ -1,0 +1,5 @@
+fork = true
+
+[font]
+normal = ["Noto Sans Mono", "Symbols Nerd Font Mono"]
+size = 12

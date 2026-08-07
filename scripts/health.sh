@@ -52,8 +52,7 @@ check_cmd "fzf" "fzf"
 echo
 echo "desktop binaries:"
 check_cmd "niri" "niri"
-check_cmd "waybar" "waybar"
-check_cmd "mako" "mako"
+check_cmd "noctalia" "noctalia"
 check_cmd "kanata" "kanata"
 check_cmd "awww" "awww"
 

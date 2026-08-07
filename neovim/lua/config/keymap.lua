@@ -24,6 +24,9 @@ map("v", "p", '"+p', { desc = "Paste from clipboard after" })
 map("n", "P", '"+P', { desc = "Paste from clipboard before" })
 map("v", "P", '"+P', { desc = "Paste from clipboard before" })
 
+map({ "i", "c" }, "<C-S-v>", "<C-r>+", { desc = "Paste from clipboard" })
+map("t", "<C-S-v>", '<C-\\><C-n>"+pa', { desc = "Paste from clipboard" })
+
 map("n", "<leader>yy", "yy", { desc = "Yank line (internal)" })
 map("v", "<leader>y", "y", { desc = "Yank selection (internal)" })
 map("n", "<leader>p", "p", { desc = "Paste after (internal)" })
@@ -58,8 +61,8 @@ if vim.g.vscode then
     map("n", "<leader>rn", function() call("editor.action.rename") end, { desc = "Rename symbol" })
     map("n", "<leader>ca", function() call("editor.action.quickFix") end, { desc = "Code action" })
     map({ "n", "v" }, "<A-CR>", function() call("editor.action.quickFix") end, { desc = "Code action" })
-    map("n", "gs", function() call("outline.focus") end, { desc = "Document symbols" })
-    map("n", "gS", function() call("workbench.action.gotoSymbol") end, { desc = "Document symbols (picker)" })
+    map("n", "gs", function() call("workbench.action.gotoSymbol") end, { desc = "Document symbols (picker)" })
+    map("n", "gS", function() call("outline.focus") end, { desc = "Document symbols" })
 
     map("n", "<leader>e", function() call("editor.action.showHover") end, { desc = "Show diagnostic" })
     map("n", "<leader>E", function() call("workbench.actions.view.problems") end, { desc = "Problems panel" })
@@ -120,8 +123,8 @@ else
             map("n", "<leader>d", function() vim.lsp.buf.hover() end, vim.tbl_extend("force", opts, { desc = "Hover docs" }))
             map("n", "<leader>rn", vim.lsp.buf.rename, vim.tbl_extend("force", opts, { desc = "Rename symbol" }))
             map({ "n", "v" }, "<leader>ca", function() require("actions-preview").code_actions() end, vim.tbl_extend("force", opts, { desc = "Code action (preview)" }))
-            map("n", "gs", function() require("trouble").toggle("symbols") end, { desc = "Document symbols" })
-            map("n", "gS", function() require("telescope.builtin").lsp_document_symbols() end, vim.tbl_extend("force", opts, { desc = "Document symbols" }))
+            map("n", "gs", function() require("telescope.builtin").lsp_document_symbols() end, vim.tbl_extend("force", opts, { desc = "Document symbols" }))
+            map("n", "gS", function() require("trouble").toggle("symbols") end, { desc = "Document symbols" })
         end,
     })
 end

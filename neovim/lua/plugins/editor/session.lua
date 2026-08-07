@@ -64,6 +64,7 @@ end
 return {
     "rmagatti/auto-session",
     lazy = false,
+    cond = vim.env.NVIM_NO_SESSION ~= "1",
     opts = {
         auto_restore = true,
         auto_save = true,

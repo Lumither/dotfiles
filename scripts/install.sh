@@ -4,13 +4,25 @@ set -euo pipefail
 DOTFILES="$(cd "$(dirname "$0")/.." && pwd)"
 OS="$(uname)"
 
+# -- vscode variant detection ----------------------------------------------
+if command -v code-oss >/dev/null 2>&1; then
+    VSCODE_BIN="code-oss"; VSCODE_DIR="Code - OSS"
+elif command -v codium >/dev/null 2>&1; then
+    VSCODE_BIN="codium"; VSCODE_DIR="VSCodium"
+elif command -v code-insiders >/dev/null 2>&1; then
+    VSCODE_BIN="code-insiders"; VSCODE_DIR="Code - Insiders"
+else
+    VSCODE_BIN="code"; VSCODE_DIR="Code"
+fi
+export VSCODE_BIN
+
 # -- platform-specific paths -----------------------------------------------
 case "$OS" in
     Darwin)
-        VSCODE="$HOME/Library/Application Support/Code/User"
+        VSCODE="$HOME/Library/Application Support/$VSCODE_DIR/User"
         ;;
     Linux)
-        VSCODE="$HOME/.config/Code/User"
+        VSCODE="$HOME/.config/$VSCODE_DIR/User"
         ;;
     *)
         echo "Unsupported platform: $OS" >&2
@@ -20,25 +32,30 @@ esac
 
 # -- links: name | source | target -----------------------------------------
 links=(
-    "neovim     | neovim                    | $HOME/.config/nvim"
-    "kitty      | kitty                     | $HOME/.config/kitty"
-    "vscode     | vscode/settings.json      | $VSCODE/settings.json"
-    "vscode     | vscode/keybindings.json   | $VSCODE/keybindings.json"
-    "alacritty  | alacritty/alacritty.toml  | $HOME/.alacritty.toml"
-    "vim        | vim/vimrc                 | $HOME/.vimrc"
-    "ideavim    | ideavim/ideavimrc         | $HOME/.ideavimrc"
-    "zsh        | zsh/zshrc                 | $HOME/.zshrc"
-    "zsh        | zsh/zprofile              | $HOME/.zprofile"
-    "tmux       | tmux/tmux.conf            | $HOME/.tmux.conf"
-    "niri       | desktop/niri              | $HOME/.config/niri"
-    "waybar     | desktop/waybar            | $HOME/.config/waybar"
-    "mako       | desktop/mako              | $HOME/.config/mako"
-    "kanata     | desktop/kanata/kanata.kbd | $HOME/.config/kanata.kbd"
+    "neovim     | neovim                               | $HOME/.config/nvim"
+    "kitty      | kitty                                | $HOME/.config/kitty"
+    "vscode     | vscode/settings.json                 | $VSCODE/settings.json"
+    "vscode     | vscode/keybindings.json              | $VSCODE/keybindings.json"
+    "alacritty  | alacritty/alacritty.toml             | $HOME/.alacritty.toml"
+    "vim        | vim/vimrc                            | $HOME/.vimrc"
+    "ideavim    | ideavim/ideavimrc                    | $HOME/.ideavimrc"
+    "zsh        | zsh/zshrc                            | $HOME/.zshrc"
+    "zsh        | zsh/zprofile                         | $HOME/.zprofile"
+    "tmux       | tmux/tmux.conf                       | $HOME/.tmux.conf"
+    "niri       | desktop/niri                         | $HOME/.config/niri"
+    "noctalia   | desktop/noctalia                     | $HOME/.config/noctalia"
+    "neovide    | desktop/neovide                      | $HOME/.config/neovide"
+    "kanata     | desktop/kanata/kanata.kbd            | $HOME/.config/kanata.kbd"
+    "kde        | desktop/kde/kdeglobals               | $HOME/.config/kdeglobals"
+    "fcitx5     | desktop/fcitx5/classicui.conf        | $HOME/.config/fcitx5/conf/classicui.conf"
+    "fcitx5     | desktop/fcitx5/dark-rounded          | $HOME/.local/share/fcitx5/themes/dark-rounded"
+    "envd       | desktop/environment.d                | $HOME/.config/environment.d"
+    "portal     | desktop/xdg-portal/niri-portals.conf | $HOME/.config/xdg-desktop-portal/niri-portals.conf"
 )
 
 # -- groups: alias | members -----------------------------------------------
 groups=(
-    "desktop | niri waybar mako kanata"
+    "desktop | niri noctalia kanata kde fcitx5 envd portal"
 )
 
 # -- helpers ---------------------------------------------------------------
@@ -100,7 +117,10 @@ for entry in "${links[@]}"; do
         $match || continue
     fi
 
-    pre_hook="$DOTFILES/$name/pre-install.sh"
+    hook_dir="$DOTFILES/$src"
+    [ -d "$hook_dir" ] || hook_dir="$(dirname "$hook_dir")"
+
+    pre_hook="$hook_dir/pre-install.sh"
     if [ -x "$pre_hook" ] && ! _hook_ran "pre:$name"; then
         green "  hook  $pre_hook"
         "$pre_hook"
@@ -110,7 +130,7 @@ pre:$name"
 
     link "$DOTFILES/$src" "$dst"
 
-    post_hook="$DOTFILES/$name/post-install.sh"
+    post_hook="$hook_dir/post-install.sh"
     if [ -x "$post_hook" ] && ! _hook_ran "post:$name"; then
         green "  hook  $post_hook"
         "$post_hook"

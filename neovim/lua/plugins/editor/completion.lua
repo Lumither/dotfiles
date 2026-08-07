@@ -10,6 +10,9 @@ return {
         signature = {
             enabled = true,
         },
+        cmdline = {
+            completion = { list = { selection = { preselect = false } } },
+        },
         -- appearance = {
         --     kind_icons = {
         --         Text = 'TX', Method = 'FN', Function = 'FN', Constructor = 'FN',

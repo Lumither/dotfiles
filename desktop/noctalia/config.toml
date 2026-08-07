@@ -1,0 +1,80 @@
+[theme]
+source = "wallpaper"
+
+[widget.clock]
+format = "{:%H:%M:%S}"
+capsule_padding = 8
+
+[shell.animation]
+speed = 1.7
+
+[shell.panel]
+open_near_click_control_center = true
+
+[control_center]
+hidden_tabs = ["bluetooth", "weather", "screen-time"]
+
+[[control_center.shortcuts]]
+type = "caffeine"
+
+[[control_center.shortcuts]]
+type = "notification"
+
+[[control_center.shortcuts]]
+type = "mic_mute"
+
+[[control_center.shortcuts]]
+type = "wallpaper"
+
+[wallpaper]
+directory = "/home/lumither/pictures/wallpaper"
+fill_color = "#353533"
+transition = ["disc"]
+transition_duration = 1200
+transition_on_startup = true
+
+[weather]
+enabled = false
+
+[brightness]
+enable_ddcutil = true
+
+[dock]
+enabled = true
+icon_size = 30
+launcher_position = "start"
+layer = "overlay"
+magnification = false
+reserve_space = false
+show_dots = true
+auto_hide = true
+smart_auto_hide = true
+
+[backdrop]
+enabled = true
+
+[bar]
+
+[bar.default]
+capsule = true
+
+auto_hide = true
+smart_auto_hide = true
+reserve_space = false
+layer = "overlay"
+
+background_opacity = 0.5
+start = ["workspaces"]
+center = ["active-window"]
+end = [
+    "tray",
+    "cpu",
+    "ram",
+    "temp",
+    "volume",
+    "network",
+    "clock",
+    "notifications",
+    "control-center",
+    "session",
+]

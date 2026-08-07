@@ -6,3 +6,5 @@ zsh/external/*.zsh
 mnt/
 
 kitty/appearance.conf
+
+vscode/settings.json
