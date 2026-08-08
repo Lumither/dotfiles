@@ -51,11 +51,12 @@ links=(
     "fcitx5     | desktop/fcitx5/dark-rounded          | $HOME/.local/share/fcitx5/themes/dark-rounded"
     "envd       | desktop/environment.d                | $HOME/.config/environment.d"
     "portal     | desktop/xdg-portal/niri-portals.conf | $HOME/.config/xdg-desktop-portal/niri-portals.conf"
+    "filemgr    | desktop/dbus-services/org.freedesktop.FileManager1.service | $HOME/.local/share/dbus-1/services/org.freedesktop.FileManager1.service"
 )
 
 # -- groups: alias | members -----------------------------------------------
 groups=(
-    "desktop | niri noctalia kanata kde fcitx5 envd portal"
+    "desktop | niri noctalia kanata kde fcitx5 envd portal filemgr"
 )
 
 # -- helpers ---------------------------------------------------------------
