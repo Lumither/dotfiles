@@ -17,6 +17,8 @@ spawn-at-startup "fcitx5" "-d"
 
 spawn-at-startup "/usr/lib/polkit-kde-authentication-agent-1"
 
+spawn-at-startup "xembedsniproxy"
+
 spawn-sh-at-startup "gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'"
 
 cursor {
