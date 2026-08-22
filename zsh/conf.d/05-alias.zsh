@@ -16,8 +16,6 @@ alias 6='cd -6'
 alias 7='cd -7'
 alias 8='cd -8'
 alias 9='cd -9'
-alias md='mkdir -p'
-alias rd=rmdir
 
 function d() {
     if [[ -n $1 ]]; then
@@ -27,7 +25,9 @@ function d() {
     fi
 }
 
-function take() {
+alias mkd='mkdir -p'
+alias rd=rmdir
+function mkcd() {
     mkdir -p "$1" && cd "$1"
 }
 
@@ -41,3 +41,9 @@ clidx() {
 }
 
 alias ssh='TERM=xterm-256color ssh'
+
+function psg() {
+    emulate -L zsh
+    (( $# )) || { print -u2 "usage: psg [grep-opts] <pattern>"; return 2 }
+    ps auxww | { read -r header; print -r -- "$header"; grep "$@" }
+}
