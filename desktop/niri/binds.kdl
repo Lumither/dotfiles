@@ -2,6 +2,9 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     Mod+Return hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty" "--single-instance" "--instance-group" "main"; }
+    Mod+Shift+Return hotkey-overlay-title="Open a Floating Terminal: kitty" { spawn "kitty" "--app-id" "kitty-float"; }
+    Mod+Backslash hotkey-overlay-title="Open a Browser: firefox" { spawn "firefox-developer-edition"; }
+    Mod+Shift+Backslash hotkey-overlay-title="Open a Floating Terminal: codex" { spawn "kitty" "--app-id" "kitty-float" "zsh" "-ic" ". tmpdir; codex -c service_tier=fast"; }
     Mod+Space hotkey-overlay-title="Launcher: noctalia" { spawn "noctalia" "msg" "panel-toggle" "launcher"; }
     Super+Alt+L hotkey-overlay-title="Lock the Screen: noctalia" { spawn "noctalia" "msg" "session" "lock"; }
     Mod+N hotkey-overlay-title="Notifications: noctalia" { spawn "noctalia" "msg" "panel-toggle" "control-center" "notifications"; }
