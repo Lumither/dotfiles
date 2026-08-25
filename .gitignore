@@ -8,6 +8,8 @@ zsh/.zcompdump
 zsh/external/*.zsh
 mnt/
 
+neovim/lazy-lock.json
+
 kitty/appearance.conf
 
 vscode/settings.json
