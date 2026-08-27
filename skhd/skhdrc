@@ -1,0 +1,5 @@
+# mod = cmd
+
+# 0x2A = backslash
+cmd - return : osascript -e 'tell application "System Events" to tell process "kitty" to click menu item "New OS Window" of menu 1 of menu bar item "Shell" of menu bar 1' >/dev/null 2>&1 || open -a kitty
+cmd - 0x2A   : open -n -a "Firefox Developer Edition" --args --new-window

@@ -42,6 +42,7 @@ links=(
     "zsh        | zsh/zshrc                            | $HOME/.zshrc"
     "zsh        | zsh/zprofile                         | $HOME/.zprofile"
     "tmux       | tmux/tmux.conf                       | $HOME/.tmux.conf"
+    "skhd       | skhd/skhdrc                          | $HOME/.config/skhd/skhdrc"
     "niri       | desktop/niri                         | $HOME/.config/niri"
     "noctalia   | desktop/noctalia                     | $HOME/.config/noctalia"
     "neovide    | desktop/neovide                      | $HOME/.config/neovide"
